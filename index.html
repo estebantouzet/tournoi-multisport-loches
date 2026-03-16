@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournoi Multisport Loches - Festival Sportif</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-trophy"></i>
+                <span>Tournoi Loches</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                <li><a href="#tournoi" class="nav-link">Le Tournoi</a></li>
+                <li><a href="#sports" class="nav-link">Sports</a></li>
+                <li><a href="#inscription" class="nav-link">Inscription</a></li>
+                <li><a href="#benevoles" class="nav-link">Bénévoles</a></li>
+                <li><a href="#planning" class="nav-link">Planning</a></li>
+                <li><a href="#classement" class="nav-link">Live</a></li>
+                <li><a href="#partenaires" class="nav-link">Partenaires</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Tournoi Multisport de Loches</h1>
+            <p class="hero-subtitle">Le festival sportif convivial de l'année !</p>
+            <div class="hero-info">
+                <div class="info-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date à venir</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Loches, France</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-users"></i>
+                    <span>Plusieurs sports</span>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#inscription" class="btn btn-primary">Inscrire son équipe</a>
+                <a href="#tournoi" class="btn btn-secondary">En savoir plus</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="sport-icons">
+                <i class="fas fa-futbol"></i>
+                <i class="fas fa-basketball-ball"></i>
+                <i class="fas fa-football-ball"></i>
+                <i class="fas fa-table-tennis"></i>
+                <i class="fas fa-volleyball-ball"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tournoi Section -->
+    <section id="tournoi" class="section">
+        <div class="container">
+            <h2 class="section-title">Le Tournoi</h2>
+            <div class="tournoi-grid">
+                <div class="tournoi-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Concept</h3>
+                    <p>Tournoi multisport convivial avec plusieurs disciplines dans une ambiance festival.</p>
+                </div>
+                <div class="tournoi-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Programme</h3>
+                    <ul>
+                        <li><strong>Matin:</strong> Début des matchs et phases de poules</li>
+                        <li><strong>Après-midi:</strong> Phases finales</li>
+                        <li><strong>Soirée:</strong> DJ et moment festif</li>
+                    </ul>
+                </div>
+                <div class="tournoi-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Infrastructures</h3>
+                    <ul>
+                        <li>3 gymnases</li>
+                        <li>2 terrains de football</li>
+                        <li>1 terrain de rugby</li>
+                        <li>3 paniers de basket</li>
+                        <li>1 piste d'athlétisme</li>
+                    </ul>
+                </div>
+                <div class="tournoi-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Restauration</h3>
+                    <ul>
+                        <li>Barbecue</li>
+                        <li>Saucisses / Merguez</li>
+                        <li>Boissons</li>
+                    </ul>
+                </div>
+                <div class="tournoi-card">
+                    <i class="fas fa-tv"></i>
+                    <h3>Écran Géant</h3>
+                    <p>Affichage des matchs en direct et des classements en temps réel.</p>
+                </div>
+                <div class="tournoi-card">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>FAQ</h3>
+                    <p>Toutes les réponses à vos questions pratiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sports Section -->
+    <section id="sports" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Sports du Tournoi</h2>
+            <div class="sports-grid" id="sportsGrid">
+                <!-- Sports will be dynamically added here -->
+            </div>
+            <div class="sport-management">
+                <button class="btn btn-primary" onclick="showAddSportModal()">
+                    <i class="fas fa-plus"></i> Ajouter un sport
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inscription Section -->
+    <section id="inscription" class="section">
+        <div class="container">
+            <h2 class="section-title">Inscription des Équipes</h2>
+            <div class="inscription-form">
+                <form id="teamForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="teamName">Nom de l'équipe *</label>
+                            <input type="text" id="teamName" name="teamName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sport">Sport choisi *</label>
+                            <select id="sport" name="sport" required>
+                                <option value="">Sélectionner un sport</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="captainName">Nom du capitaine *</label>
+                            <input type="text" id="captainName" name="captainName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="playerCount">Nombre de joueurs *</label>
+                            <input type="number" id="playerCount" name="playerCount" min="1" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> S'inscrire
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bénévoles Section -->
+    <section id="benevoles" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Rejoignez l'équipe des bénévoles</h2>
+            <div class="volunteer-form">
+                <form id="volunteerForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="volunteerName">Nom *</label>
+                            <input type="text" id="volunteerName" name="volunteerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="volunteerEmail">Email *</label>
+                            <input type="email" id="volunteerEmail" name="volunteerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="volunteerPhone">Téléphone *</label>
+                            <input type="tel" id="volunteerPhone" name="volunteerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="availability">Disponibilités *</label>
+                            <select id="availability" name="availability" required>
+                                <option value="">Sélectionner</option>
+                                <option value="matin">Matin uniquement</option>
+                                <option value="apres-midi">Après-midi uniquement</option>
+                                <option value="soiree">Soirée uniquement</option>
+                                <option value="journee">Toute la journée</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mission">Type de mission souhaitée *</label>
+                            <select id="mission" name="mission" required>
+                                <option value="">Sélectionner</option>
+                                <option value="accueil">Accueil des équipes</option>
+                                <option value="arbitrage">Arbitrage</option>
+                                <option value="restauration">Restauration</option>
+                                <option value="logistique">Logistique</option>
+                                <option value="terrains">Gestion des terrains</option>
+                                <option value="ecran">Gestion écran/résultats</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-hand-holding-heart"></i> Devenir bénévole
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planning Section -->
+    <section id="planning" class="section">
+        <div class="container">
+            <h2 class="section-title">Planning du Tournoi</h2>
+            <div class="planning-container">
+                <div class="planning-filters">
+                    <select id="sportFilter">
+                        <option value="all">Tous les sports</option>
+                    </select>
+                    <select id="terrainFilter">
+                        <option value="all">Tous les terrains</option>
+                    </select>
+                </div>
+                <div class="planning-grid" id="planningGrid">
+                    <!-- Planning will be dynamically generated -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classement Live Section -->
+    <section id="classement" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Classement en Direct</h2>
+            <div class="live-scoring">
+                <div class="live-controls">
+                    <button class="btn btn-primary" onclick="toggleLiveMode()">
+                        <i class="fas fa-sync"></i> Mode Écran Géant
+                    </button>
+                </div>
+                <div class="scores-container">
+                    <div class="current-matches">
+                        <h3>Matchs en cours</h3>
+                        <div id="currentMatches"></div>
+                    </div>
+                    <div class="rankings">
+                        <h3>Classements</h3>
+                        <div id="rankingsContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partenaires Section -->
+    <section id="partenaires" class="section">
+        <div class="container">
+            <h2 class="section-title">Nos Partenaires</h2>
+            <div class="partners-grid" id="partnersGrid">
+                <!-- Partners will be dynamically added -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informations pratiques</h3>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Loches, France</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@tournoi-loches.fr</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <span>06 XX XX XX XX</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Nom *</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Envoyer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-trophy"></i>
+                    <span>Tournoi Multisport Loches</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#mentions">Mentions légales</a>
+                    <a href="#cgv">CGV</a>
+                    <a href="#privacy">Politique de confidentialité</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for adding sports -->
+    <div id="addSportModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ajouter un sport</h2>
+            <form id="addSportForm">
+                <div class="form-group">
+                    <label for="sportName">Nom du sport *</label>
+                    <input type="text" id="sportName" name="sportName" required>
+                </div>
+                <div class="form-group">
+                    <label for="maxTeams">Nombre maximum d'équipes *</label>
+                    <input type="number" id="maxTeams" name="maxTeams" min="2" required>
+                </div>
+                <div class="form-group">
+                    <label for="teamSize">Taille des équipes *</label>
+                    <input type="number" id="teamSize" name="teamSize" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="poolCount">Nombre de poules *</label>
+                    <input type="number" id="poolCount" name="poolCount" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>QR Code de l'équipe</h2>
+            <div id="qrCodeContainer"></div>
+            <p>Présentez ce QR code à l'accueil le jour du tournoi.</p>
+            <button class="btn btn-primary" onclick="downloadQRCode()">Télécharger</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

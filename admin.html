@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrateur - Tournoi Loches</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <h3><i class="fas fa-trophy"></i> Admin Tournoi</h3>
+            <ul class="admin-nav">
+                <li><a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#sports"><i class="fas fa-running"></i> Sports</a></li>
+                <li><a href="#teams"><i class="fas fa-users"></i> Équipes</a></li>
+                <li><a href="#volunteers"><i class="fas fa-hands-helping"></i> Bénévoles</a></li>
+                <li><a href="#matches"><i class="fas fa-calendar"></i> Matchs</a></li>
+                <li><a href="#scoring"><i class="fas fa-edit"></i> Scores</a></li>
+                <li><a href="#qr-scanner"><i class="fas fa-qrcode"></i> Scan QR</a></li>
+                <li><a href="#partners"><i class="fas fa-handshake"></i> Partenaires</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> Paramètres</a></li>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Retour site</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section">
+                <h2>Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalTeams">0</div>
+                        <div class="stat-label">Équipes inscrites</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalVolunteers">0</div>
+                        <div class="stat-label">Bénévoles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalMatches">0</div>
+                        <div class="stat-label">Matchs programmés</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="sportsCount">0</div>
+                        <div class="stat-label">Sports</div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <button class="btn btn-primary" onclick="tournament.generateTournament()">
+                        <i class="fas fa-magic"></i> Générer le tournoi
+                    </button>
+                    <button class="btn btn-secondary" onclick="exportData()">
+                        <i class="fas fa-download"></i> Exporter les données
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.open('../index.html#classement', '_blank')">
+                        <i class="fas fa-tv"></i> Mode écran géant
+                    </button>
+                </div>
+            </section>
+
+            <!-- Sports Management -->
+            <section id="sports" class="admin-section">
+                <h2>Gestion des Sports</h2>
+                <div class="admin-actions">
+                    <button class="btn btn-primary" onclick="showAddSportModal()">
+                        <i class="fas fa-plus"></i> Ajouter un sport
+                    </button>
+                </div>
+                <div class="admin-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sport</th>
+                                <th>Max équipes</th>
+                                <th>Taille équipe</th>
+                                <th>Poules</th>
+                                <th>Inscrites</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sportsTable">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Teams Management -->
+            <section id="teams" class="admin-section">
+                <h2>Gestion des Équipes</h2>
+                <div class="admin-filters">
+                    <select id="teamSportFilter">
+                        <option value="all">Tous les sports</option>
+                    </select>
+                    <input type="text" id="teamSearch" placeholder="Rechercher une équipe...">
+                </div>
+                <div class="admin-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Équipe</th>
+                                <th>Sport</th>
+                                <th>Capitaine</th>
+                                <th>Email</th>
+                                <th>Joueurs</th>
+                                <th>QR Code</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teamsTable">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Volunteers Management -->
+            <section id="volunteers" class="admin-section">
+                <h2>Gestion des Bénévoles</h2>
+                <div class="admin-filters">
+                    <select id="volunteerMissionFilter">
+                        <option value="all">Toutes les missions</option>
+                    </select>
+                    <select id="volunteerAvailabilityFilter">
+                        <option value="all">Toutes les disponibilités</option>
+                    </select>
+                </div>
+                <div class="volunteer-assignments">
+                    <h3>Assignation des missions</h3>
+                    <div id="missionAssignments">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+                <div class="admin-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Téléphone</th>
+                                <th>Disponibilité</th>
+                                <th>Mission</th>
+                                <th>Assigné</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="volunteersTable">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Matches Management -->
+            <section id="matches" class="admin-section">
+                <h2>Gestion des Matchs</h2>
+                <div class="admin-filters">
+                    <select id="matchSportFilter">
+                        <option value="all">Tous les sports</option>
+                    </select>
+                    <select id="matchStatusFilter">
+                        <option value="all">Tous les statuts</option>
+                        <option value="pending">En attente</option>
+                        <option value="completed">Terminé</option>
+                    </select>
+                </div>
+                <div class="admin-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Match</th>
+                                <th>Sport</th>
+                                <th>Équipe 1</th>
+                                <th>Équipe 2</th>
+                                <th>Score</th>
+                                <th>Heure</th>
+                                <th>Terrain</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matchesTable">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Live Scoring -->
+            <section id="scoring" class="admin-section">
+                <h2>Saisie des Scores</h2>
+                <div class="scoring-interface">
+                    <div class="match-selector">
+                        <select id="matchToScore">
+                            <option value="">Sélectionner un match</option>
+                        </select>
+                    </div>
+                    <div class="score-input" id="scoreInput" style="display: none;">
+                        <div class="teams-display">
+                            <div class="team-score">
+                                <h3 id="team1Name">Équipe 1</h3>
+                                <input type="number" id="score1" min="0" value="0">
+                            </div>
+                            <div class="vs">VS</div>
+                            <div class="team-score">
+                                <h3 id="team2Name">Équipe 2</h3>
+                                <input type="number" id="score2" min="0" value="0">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveScore()">
+                            <i class="fas fa-save"></i> Enregistrer le score
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QR Scanner -->
+            <section id="qr-scanner" class="admin-section">
+                <h2>Scan QR Codes</h2>
+                <div class="qr-scanner">
+                    <div id="qr-reader"></div>
+                    <div class="scan-result" id="scanResult"></div>
+                    <button class="scan-button" onclick="startQRScanner()">
+                        <i class="fas fa-camera"></i> Démarrer le scan
+                    </button>
+                </div>
+                <div class="recent-scans">
+                    <h3>Scans récents</h3>
+                    <div id="recentScans">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Partners Management -->
+            <section id="partners" class="admin-section">
+                <h2>Gestion des Partenaires</h2>
+                <div class="admin-actions">
+                    <button class="btn btn-primary" onclick="showAddPartnerModal()">
+                        <i class="fas fa-plus"></i> Ajouter un partenaire
+                    </button>
+                </div>
+                <div class="admin-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Niveau</th>
+                                <th>Description</th>
+                                <th>Site web</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="partnersTable">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Settings -->
+            <section id="settings" class="admin-section">
+                <h2>Paramètres</h2>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label for="tournamentName">Nom du tournoi</label>
+                        <input type="text" id="tournamentName" value="Tournoi Multisport de Loches">
+                    </div>
+                    <div class="form-group">
+                        <label for="tournamentDate">Date du tournoi</label>
+                        <input type="date" id="tournamentDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="tournamentLocation">Lieu</label>
+                        <input type="text" id="tournamentLocation" value="Loches, France">
+                    </div>
+                    <div class="form-group">
+                        <label for="organizerEmail">Email organisateur</label>
+                        <input type="email" id="organizerEmail" value="contact@tournoi-loches.fr">
+                    </div>
+                    <div class="form-group">
+                        <label for="organizerPhone">Téléphone organisateur</label>
+                        <input type="tel" id="organizerPhone" value="06 XX XX XX XX">
+                    </div>
+                    <button class="btn btn-primary" onclick="saveSettings()">
+                        <i class="fas fa-save"></i> Sauvegarder
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Partner Modal -->
+    <div id="addPartnerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ajouter un partenaire</h2>
+            <form id="addPartnerForm">
+                <div class="form-group">
+                    <label for="partnerName">Nom *</label>
+                    <input type="text" id="partnerName" name="partnerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="partnerLevel">Niveau *</label>
+                    <select id="partnerLevel" name="partnerLevel" required>
+                        <option value="">Sélectionner</option>
+                        <option value="Partenaire principal">Partenaire principal</option>
+                        <option value="Partenaire officiel">Partenaire officiel</option>
+                        <option value="Soutien local">Soutien local</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="partnerDescription">Description *</label>
+                    <textarea id="partnerDescription" name="partnerDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="partnerWebsite">Site web</label>
+                    <input type="url" id="partnerWebsite" name="partnerWebsite">
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="app.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
